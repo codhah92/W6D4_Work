@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+  <title>jQuery Lite</title>
+  <script type="text/javascript" src="lib/jquery_lite.js" charset="utf-8"></script>
+  <script>
+  $l(() => {
+    $l(document.querySelector(".test")).html("<a>a</a>");
+    $l(".stuff").append("<li>new stuff</li>");
+    $l(".stuff").attr("id", "max");
+    $l(".stuff").addClass("cool");
+    $l(".stuff").addClass("dope");
+    $l(".stuff").removeClass("dope");
+    $l(".stuff").on("click", function(e) {console.log(e)});
+    $l.ajax({
+      method: "GET",
+      url: "https://api.github.com/repos/vmg/redcarpet/issues?state=closed",
+      success: function(data, status, jqXHR) {
+        console.log(JSON.parse(data.target.response));
+      }
+    });
+  });
+
+  </script>
+</head>
+<body>
+  <div class="test"></div>
+  <ul class="stuff">
+    <li>FIRST ITEM</li>
+    <li class="second">SECOND ITEM</li>
+    <li>THIRD ITEM</li>
+
+  </ul>
+
+
+
+</body>
+</html>
