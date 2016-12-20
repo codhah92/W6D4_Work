@@ -3,7 +3,7 @@ module.exports = {
   entry: "./lib/main.js",
   output: {
     path: __dirname,
-    filename: "jquery_lite.js"
+    filename: "jCody.js"
 	},
 	devtool: "source-map"
 };

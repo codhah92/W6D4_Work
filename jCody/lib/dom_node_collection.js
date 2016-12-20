@@ -4,93 +4,101 @@ class DOMNodeCollection {
   }
   html(arg) {
 
-    if(arg === undefined) {
+    if (arg === undefined) {
       return this.collection[0].innerHTML;
     } else {
-      this.collection.forEach((node) => {
+      this.each((node) => {
         node.innerHTML = arg;
-        return this;
+        return;
       });
     }
   }
 
+  each(cb) {
+    this.collection.forEach(cb);
+  }
+
   empty() {
-    html("");
-    return this;
+    this.html("");
   }
 
-  append(arg) {
-    let el;
-    if(typeof(arg) === "string") {
-      el = new DOMNodeCollection([arg]);
+  append(content) {
+    if (typeof content === 'string') {
+      this.each((node) => {
+        node.innerHTML += content;
+      });
+    } else if (content instanceof DOMNodeCollection) {
+      this.each((parent) => {
+        content.collection.forEach((child) => {
+          parent.appendChild(child);
+        });
+      });
     }
-    else if(arg instanceof HTMLElement) {
-      el = new DOMNodeCollection([arg]);
+  }
+
+  attr(key, val) {
+    if (val === undefined) {
+      return this.collection[0].getAttribute(key);
     } else {
-      el = arg;
+      this.collection[0].setAttribute(key, val);
+      return;
     }
-
-    this.collection.forEach((node) => {
-      node.innerHTML += el.collection[0];
-    });
-
-    return this;
   }
 
-  attr(arg, val) {
-    if(val === undefined) {
-      return this.collection[0].getAttribute(arg);
-    } else {
-      this.collection[0].setAttribute(arg, val);
-    }
-    return this;
+  addClass(className) {
+    this.each(node => node.classList.add(className));
   }
 
-  addClass(classname) {
-    let classes = this.attr("class").split(" ");
-
-    if(!classes.includes(classname)) {
-      classes.push(classname);
-    }
-
-    this.attr("class", classes.join(" "));
-    return this;
-  }
-
-  removeClass(classname) {
-    let classes = this.attr("class").split(" ");
-
-    let index = classes.indexOf(classname);
-
-    if(index > -1) {
-      classes.splice(index, 1);
-    }
-
-    this.attr("class", classes.join(" "));
-    return this;
+  removeClass(className) {
+    this.each(node => node.classList.remove(className));
   }
 
   children() {
-    return new DOMNodeCollection(this.collection[0].children);
+    let childrenCollection = [];
+    this.each((childElement) => {
+      childrenCollection = childrenCollection.concat(childElement.children);
+    });
+
+    return new DOMNodeCollection(childrenCollection);
   }
 
   parent() {
-    return new DOMNodeCollection(this.collection[0].parent);
+    let parentCollection = [];
+    this.each((childElement) => {
+      parentCollection = parentCollection.concat(childElement.parentElement);
+    });
+
+    return new DOMNodeCollection(parentCollection);
   }
 
-  find(arg) {
-    return new DOMNodeCollection(this.collection[0].querySelectorAll(arg));
+  find(selector) {
+    let selectorNodes = [];
+    this.each((node) => {
+      const allNodes = node.querySelectorAll(selector);
+      selectorNodes = selectorNodes.concat(allNodes);
+    });
+
+    return new DOMNodeCollection(selectorNodes);
   }
 
   remove() {
-    this.collection.forEach((node) => {
+    this.each((node) => {
       node.remove();
     });
   }
 
-  on(event, callback) {
-    this.collection.forEach((node) => {
-      node.addEventListener(event, callback.bind(this));
+  on(e, callback) {
+    this.each((node) => {
+      node.addEventListener(e, callback);
+      node.eventCallBack = callback;
+    });
+    return;
+  }
+
+  off(e) {
+    this.each((node) => {
+      const callback = node.eventCallBack;
+        node.removeEventListener(e, callback);
     });
   }
 }
