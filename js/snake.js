@@ -32,6 +32,34 @@ class Snake {
     });
   }
 
+  selfCollision() {
+    for (let i = 0; i < this.segments.length; i++) {
+      if (this.segments[i].equals(this.nextCoord())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  wallCollision() {
+    const newCoord = this.nextCoord();
+
+    if (
+      newCoord.xPos < 0 ||
+      newCoord.yPos < 0 ||
+      newCoord.xPos > 19 ||
+      newCoord.yPos > 19
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  nextCoord() {
+    return this.segments[0].plus(Snake.MOVES[this.direction]);
+  }
+
   head() {
     return this.segments[0];
   }

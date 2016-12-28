@@ -12,7 +12,7 @@ class Board {
     let xCoord = Math.floor(Math.random() * 20);
     let yCoord = Math.floor(Math.random() * 20);
 
-    while ( this.snake.hasCoord([xCoord, yCoord]) ) {
+    while (this.snake.hasCoord([xCoord, yCoord]) ) {
       xCoord = Math.floor(Math.random() * 20);
       yCoord = Math.floor(Math.random() * 20);
     }

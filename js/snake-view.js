@@ -33,14 +33,7 @@ class View {
   }
 
   populateBoard() {
-    let grid = this.board.grid;
-    this.board.snake.segments.forEach((segment) => {
-      $($($('ul')[segment.yCoord]).children()[segment.xCoord]).css('background','green');
-    });
-
-    this.board.apples.forEach( (apple) => {
-      $($($('ul')[apple.y]).children()[apple.x]).css('background','red');
-    });
+    
   }
 
 
