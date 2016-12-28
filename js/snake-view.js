@@ -1,17 +1,14 @@
 const Board = require('./board.js');
 
 class View {
-  constructor($el, $view) {
-    this.$l = $el;
-    this.$view = $view;
+  constructor($el) {
+    this.$el = $el;
     this.board = new Board();
     this.drawBoard();
-    this.populateBoard();
 
-    window.setInterval(() => {
-      this.step();
-      this.populateBoard();
-    }, 100);
+    this.intervalId = window.setInterval((
+      this.step.bind(this)
+    ), 100);
 
     $(window).on('keydown', this.handleKeyEvent.bind(this));
   }
@@ -22,24 +19,44 @@ class View {
     }
   }
 
-  drawBoard() {
-    this.board.grid.forEach((el) => {
-      let $gridRow = $('<ul class="group"></ul>');
-      el.forEach( (_,j) => {
-        $gridRow.append($('<li></li>'));
-      });
-      this.$view.append($gridRow);
+  render() {
+    this.updateClasses(this.board.snake.segments, "snake");
+    this.updateClasses([this.board.apple.position], "apple");
+  }
+
+
+  updateClasses(coords, className) {
+    this.$li.filter(`.${className}`).removeClass();
+
+    coords.forEach( coord => {
+      const flatCoord = (coord.xCoord * 20) + coord.yCoord;
+      this.$li.eq(flatCoord).addClass(className);
     });
   }
 
-  populateBoard() {
-    
+  drawBoard() {
+    let html = "";
+
+    for (let i = 0; i < 20; i++) {
+      html += "<ul>";
+      for (let j = 0; j < 20; j++) {
+        html += "<li></li>";
+      }
+      html += "</ul>";
+    }
+
+    this.$el.html(html);
+    this.$li = this.$el.find("li");
   }
 
-
-
   step() {
-    this.board.snake.move();
+    if (this.board.snake.segments.length > 0) {
+      this.board.snake.move();
+      this.render();
+    } else {
+      console.log("You lose");
+      window.clearInterval(this.intervalId);
+    }
   }
 }
 

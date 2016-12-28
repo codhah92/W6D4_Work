@@ -11,8 +11,8 @@ class Apple {
     let y = Math.floor(Math.random() * 20);
 
     while (this.board.snake.hasCoord([x, y])) {
-      x = Math.floor(Math.random() * this.board.dim);
-      y = Math.floor(Math.random() * this.board.dim);
+      x = Math.floor(Math.random() * 20);
+      y = Math.floor(Math.random() * 20);
     }
 
     this.position = new Coord(x, y);

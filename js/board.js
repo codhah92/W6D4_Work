@@ -1,25 +1,30 @@
 const Snake = require('./snake.js');
+const Apple = require('./apple.js');
 
 class Board {
   constructor() {
     this.grid = Board.createGrid();
     this.snake = new Snake(this);
-    this.apples = [];
-    this.makeApple();
+    this.apple = new Apple(this);
   }
 
-  makeApple() {
-    let xCoord = Math.floor(Math.random() * 20);
-    let yCoord = Math.floor(Math.random() * 20);
-
-    while (this.snake.hasCoord([xCoord, yCoord]) ) {
-      xCoord = Math.floor(Math.random() * 20);
-      yCoord = Math.floor(Math.random() * 20);
-    }
-    this.apples.push([xCoord, yCoord]);
+  validPos(coord) {
+    return (coord.xCoord >= 0) && (coord.xCoord < 20) &&
+     (coord.yCoord >= 0) && (coord.yCoord < 20);
   }
 
+  render() {
+    const grid = Board.createGrid();
 
+    this.snake.segments.forEach( (segment) => {
+      grid[segment.xCoord][segment.yCoord] = "S";
+    });
+
+    grid[this.apple.position.xCoord][this.apple.position.yCoord] = "A";
+
+    const rowStrs = [];
+    grid.map( row => row.join("") ).join("\n");
+  }
 
   static createGrid() {
    const grid = [];
@@ -27,7 +32,7 @@ class Board {
    for (let i = 0; i < 20; i++) {
      grid.push([]);
      for (let j = 0; j < 20; j++) {
-       grid[i].push(null);
+       grid[i].push("E");
      }
    }
    return grid;
