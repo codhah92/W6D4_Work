@@ -23,12 +23,12 @@ class Snake {
       this.segments.pop();
     }
 
-    if (!this.isValid()) {
+    if (!this.validMove()) {
       this.segments = [];
     }
   }
 
-  isValid() {
+  validMove() {
     const head = this.head();
     if (!this.board.validPos(this.head())) {
       return false;
@@ -66,14 +66,10 @@ class Snake {
     this.segments.forEach( (segment) => {
       if ((segment[0] === x ) && (segment[1] === y)) {
         return true;
-      } else {
-        return false;
       }
     });
-  }
 
-  nextCoord() {
-    return this.segments[0].plus(Snake.MOVES[this.direction]);
+    return false;
   }
 
   head() {

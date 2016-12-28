@@ -59,6 +59,7 @@ class View {
       this.board.snake.move();
       this.render();
     } else {
+      alert("You lose! Try again.");
       window.clearInterval(this.intervalId);
       new View(rootEl);
     }
