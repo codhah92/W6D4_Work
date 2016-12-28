@@ -50,12 +50,13 @@ class View {
   }
 
   step() {
+    const rootEl = $('.snake');
     if (this.board.snake.segments.length > 0) {
       this.board.snake.move();
       this.render();
     } else {
-      console.log("You lose");
       window.clearInterval(this.intervalId);
+      new View(rootEl);
     }
   }
 }

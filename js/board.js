@@ -22,7 +22,6 @@ class Board {
 
     grid[this.apple.position.xCoord][this.apple.position.yCoord] = "A";
 
-    const rowStrs = [];
     grid.map( row => row.join("") ).join("\n");
   }
 
