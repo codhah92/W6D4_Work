@@ -7,6 +7,7 @@ class Snake {
     this.segments = [new Coord(10, 10)];
     this.isTurning = false;
     this.grow = 0;
+    this.points = 0;
   }
 
   move() {
@@ -44,6 +45,7 @@ class Snake {
 
   eatApple() {
     if (this.head().equals(this.board.apple.position)) {
+      this.points += 10;
       this.grow += 3;
       return true;
     } else {

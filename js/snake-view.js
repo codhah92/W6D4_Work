@@ -22,8 +22,12 @@ class View {
   render() {
     this.updateClasses(this.board.snake.segments, "snake");
     this.updateClasses([this.board.apple.position], "apple");
+    this.renderPoints();
   }
 
+  renderPoints() {
+    $('.points').text(this.board.snake.points);
+  }
 
   updateClasses(coords, className) {
     this.$li.filter(`.${className}`).removeClass();
