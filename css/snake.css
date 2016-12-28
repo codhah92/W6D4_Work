@@ -1,0 +1,13 @@
+h1 {
+  font-size: 36px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+li {
+  height: 20px;
+  width: 20px;
+  float: left;
+  background: #eee;
+  border: 1px solid #ccc;
+}
