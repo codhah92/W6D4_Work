@@ -13,3 +13,9 @@ li {
 .snake {
   background: green;
 }
+
+.points-label {
+  display: block;
+  font-size: 20px;
+  margin-top: 10px;
+}
