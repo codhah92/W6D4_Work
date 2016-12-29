@@ -24,6 +24,8 @@ const $l = function (selector) {
     const nodeList = document.querySelectorAll(selector);
     const nodeListArr = Array.from(nodeList);
     return new DOMNodeCollection(nodeListArr);
+  } else if (selector === window) {
+    return new DOMNodeCollection([window]);
   }
 };
 

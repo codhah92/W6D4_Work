@@ -1,5 +1,5 @@
 const Board = require('./board.js');
-
+const $l = require('../jCody/lib/main.js');
 class View {
   constructor($el) {
     this.$el = $el;

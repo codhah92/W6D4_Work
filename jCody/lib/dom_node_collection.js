@@ -101,6 +101,28 @@ class DOMNodeCollection {
         node.removeEventListener(e, callback);
     });
   }
+
+  text(string) {
+    this.each((node) => {
+      node.textContent = string;
+    });
+    return;
+  }
+
+  filter(selector) {
+    let filteredNodes = [];
+    this.collection[0].forEach((node) => {
+      if (node.classname === selector) {
+        filteredNodes.push(node);
+      }
+    });
+
+    return new DOMNodeCollection(filteredNodes);
+  }
+
+  eq(index) {
+
+  }
 }
 
 module.exports = DOMNodeCollection;
