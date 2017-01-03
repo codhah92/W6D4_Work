@@ -2,7 +2,7 @@
 
 ## Background
 
-jCody is a small JavaScript library that facilitates DOM manipulation. Similar to jQuery, jCody simplifies HTML document traversing, event handling, and AJAX requests in JavaScript.
+jCody is a lightweight JavaScript library that facilitates DOM manipulation. Inspired by jQuery, jCody simplifies HTML document traversing, event handling, and AJAX requests in JavaScript.
 
 # Guidelines
 
