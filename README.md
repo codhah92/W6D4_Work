@@ -1,5 +1,7 @@
 # jCody
 
+[Snake Demo using jCody][codhah92.github.io/jCody]
+
 ## Background
 
 jCody is a lightweight JavaScript library that facilitates DOM manipulation. Inspired by jQuery, jCody simplifies HTML document traversing, event handling, and AJAX requests in JavaScript.
@@ -12,6 +14,12 @@ To use jCody, start by downloading `./jCody/lib` and include it in your project 
 
 ``` javascript
   <script src="./jCody/lib/main.js" charset="utf-8"></script>
+```
+
+You can also include the following code snippet at the top of every file that uses jCody.
+
+``` javascript
+  const $c = require('./../jCody/lib/main.js');
 ```
 
 ## Sample Usage
