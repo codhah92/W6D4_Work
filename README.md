@@ -1,6 +1,7 @@
 # jCody
 
-[Snake Demo](www.codyjhahn.com/jCody)
+[Snake Demo][link]
+[link]: http://www.codyjhahn.com/jCody
 
 ## Background
 
