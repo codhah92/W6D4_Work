@@ -2,7 +2,7 @@
 
 [Snake Demo]
 
-[Snake Demo]: codhah92.github.io/jCody 
+[Snake Demo]: www.codyjhahn.com/jCody
 
 
 
