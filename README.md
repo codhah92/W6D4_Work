@@ -2,7 +2,9 @@
 
 [Snake Demo]
 
-[Snake Demo]:[codhah92.github.io/jCody]
+[Snake Demo]: codhah92.github.io/jCody 
+
+
 
 ## Background
 
