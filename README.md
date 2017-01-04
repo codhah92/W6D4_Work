@@ -1,10 +1,6 @@
 # jCody
 
-[Snake Demo]
-
-[Snake Demo]: www.codyjhahn.com/jCody
-
-
+[Snake Demo](www.codyjhahn.com/jCody)
 
 ## Background
 
