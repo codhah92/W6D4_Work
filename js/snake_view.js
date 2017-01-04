@@ -1,8 +1,9 @@
 const Board = require('./board.js');
-const $l = require('../jCody/lib/main.js');
+const $c = require('./../jCody/lib/main.js');
+
 class View {
-  constructor($el) {
-    this.$el = $el;
+  constructor(el) {
+    this.el = el;
     this.board = new Board();
     this.drawBoard();
 
@@ -10,7 +11,7 @@ class View {
       this.step.bind(this)
     ), 100);
 
-    $(window).on('keydown', this.handleKeyEvent.bind(this));
+    $c(window).on('keydown', this.handleKeyEvent.bind(this));
   }
 
   handleKeyEvent() {
@@ -26,15 +27,17 @@ class View {
   }
 
   renderPoints() {
-    $('.points').text(this.board.snake.points);
+    $c('.points').text(this.board.snake.points);
   }
 
   updateClasses(coords, className) {
-    this.$li.filter(`.${className}`).removeClass();
+    $c(`.${className}`).removeClass(className);
 
     coords.forEach( coord => {
       const flatCoord = (coord.xCoord * 20) + coord.yCoord;
-      this.$li.eq(flatCoord).addClass(className);
+      if (this.$li) {
+        this.$li.eq(flatCoord).addClass(className);
+      }
     });
   }
 
@@ -49,12 +52,12 @@ class View {
       html += "</ul>";
     }
 
-    this.$el.html(html);
-    this.$li = this.$el.find("li");
+    this.el.html(html);
+    this.$li = $c("li");
   }
 
   step() {
-    const rootEl = $('.snake');
+    const rootEl = $c('.snake');
     if (this.board.snake.segments.length > 0) {
       this.board.snake.move();
       this.render();

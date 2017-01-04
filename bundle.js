@@ -46,10 +46,10 @@
 
 	const Game = __webpack_require__(1);
 	const View = __webpack_require__(3);
-	const $l = __webpack_require__(6);
+	const $c = __webpack_require__(6);
 	
-	$( () => {
-	  const rootEl = $('.snake');
+	$c( () => {
+	  const rootEl = $c('.snake');
 	  new View(rootEl);
 	});
 
@@ -114,7 +114,7 @@
 	  }
 	
 	  turn(newDir) {
-	    if ((Snake.MOVES[this.direction].isOpposite(newDir)) || this.isTurning) {
+	    if ((Snake.MOVES[this.direction].isOpposite(Snake.MOVES[newDir])) || this.isTurning) {
 	      return;
 	    } else {
 	      this.isTurning = true;
@@ -187,10 +187,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	const Board = __webpack_require__(4);
-	const $l = __webpack_require__(6);
+	const $c = __webpack_require__(6);
+	
 	class View {
-	  constructor($el) {
-	    this.$el = $el;
+	  constructor(el) {
+	    this.el = el;
 	    this.board = new Board();
 	    this.drawBoard();
 	
@@ -198,7 +199,7 @@
 	      this.step.bind(this)
 	    ), 100);
 	
-	    $(window).on('keydown', this.handleKeyEvent.bind(this));
+	    $c(window).on('keydown', this.handleKeyEvent.bind(this));
 	  }
 	
 	  handleKeyEvent() {
@@ -214,15 +215,17 @@
 	  }
 	
 	  renderPoints() {
-	    $('.points').text(this.board.snake.points);
+	    $c('.points').text(this.board.snake.points);
 	  }
 	
 	  updateClasses(coords, className) {
-	    this.$li.filter(`.${className}`).removeClass();
+	    $c(`.${className}`).removeClass(className);
 	
 	    coords.forEach( coord => {
 	      const flatCoord = (coord.xCoord * 20) + coord.yCoord;
-	      this.$li.eq(flatCoord).addClass(className);
+	      if (this.$li) {
+	        this.$li.eq(flatCoord).addClass(className);
+	      }
 	    });
 	  }
 	
@@ -237,12 +240,12 @@
 	      html += "</ul>";
 	    }
 	
-	    this.$el.html(html);
-	    this.$li = this.$el.find("li");
+	    this.el.html(html);
+	    this.$li = $c("li");
 	  }
 	
 	  step() {
-	    const rootEl = $('.snake');
+	    const rootEl = $c('.snake');
 	    if (this.board.snake.segments.length > 0) {
 	      this.board.snake.move();
 	      this.render();
@@ -357,7 +360,7 @@
 	  });
 	}
 	
-	const $l = function (selector) {
+	const $c = function (selector) {
 	  if (typeof selector === "function") {
 	    if (docReady) {
 	      selector();
@@ -375,9 +378,9 @@
 	  }
 	};
 	
-	window.$l = $l;
+	window.$c = $c;
 	
-	$l.extend = function(objectA, ...objects) {
+	$c.extend = function(objectA, ...objects) {
 	  objects.forEach((object) => {
 	    for (let key in object) {
 	      objectA[key] = object[key];
@@ -386,7 +389,7 @@
 	  return objectA;
 	};
 	
-	$l.ajax = function(options = {}) {
+	$c.ajax = function(options = {}) {
 	  const defaults = {
 	    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 	    method: "GET",
@@ -396,7 +399,7 @@
 	    error: function() {}
 	  };
 	
-	  $l.extend(defaults, options);
+	  $c.extend(defaults, options);
 	  const xhr = new XMLHttpRequest();
 	
 	  xhr.open(defaults.method, defaults.url);
@@ -410,7 +413,7 @@
 	  xhr.send(defaults.data);
 	};
 	
-	module.exports = $l;
+	module.exports = $c;
 
 
 /***/ },
@@ -494,7 +497,7 @@
 	    let selectorNodes = [];
 	    this.each((node) => {
 	      const allNodes = node.querySelectorAll(selector);
-	      selectorNodes = selectorNodes.concat(allNodes);
+	      selectorNodes = selectorNodes.concat(Array.from(allNodes));
 	    });
 	
 	    return new DOMNodeCollection(selectorNodes);
@@ -528,19 +531,8 @@
 	    return;
 	  }
 	
-	  filter(selector) {
-	    let filteredNodes = [];
-	    this.collection[0].forEach((node) => {
-	      if (node.classname === selector) {
-	        filteredNodes.push(node);
-	      }
-	    });
-	
-	    return new DOMNodeCollection(filteredNodes);
-	  }
-	
-	  eq(index) {
-	
+	  eq(idx) {
+	    return new DOMNodeCollection([this.collection[idx]]);
 	  }
 	}
 	

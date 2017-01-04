@@ -54,7 +54,7 @@ class Snake {
   }
 
   turn(newDir) {
-    if ((Snake.MOVES[this.direction].isOpposite(newDir)) || this.isTurning) {
+    if ((Snake.MOVES[this.direction].isOpposite(Snake.MOVES[newDir])) || this.isTurning) {
       return;
     } else {
       this.isTurning = true;

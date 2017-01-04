@@ -75,7 +75,7 @@ class DOMNodeCollection {
     let selectorNodes = [];
     this.each((node) => {
       const allNodes = node.querySelectorAll(selector);
-      selectorNodes = selectorNodes.concat(allNodes);
+      selectorNodes = selectorNodes.concat(Array.from(allNodes));
     });
 
     return new DOMNodeCollection(selectorNodes);
@@ -109,19 +109,8 @@ class DOMNodeCollection {
     return;
   }
 
-  filter(selector) {
-    let filteredNodes = [];
-    this.collection[0].forEach((node) => {
-      if (node.classname === selector) {
-        filteredNodes.push(node);
-      }
-    });
-
-    return new DOMNodeCollection(filteredNodes);
-  }
-
-  eq(index) {
-
+  eq(idx) {
+    return new DOMNodeCollection([this.collection[idx]]);
   }
 }
 

@@ -1,8 +1,8 @@
 const Game = require('./snake.js');
 const View = require('./snake_view.js');
-const $l = require('../jCody/lib/main.js');
+const $c = require('./../jCody/lib/main.js');
 
-$( () => {
-  const rootEl = $('.snake');
+$c( () => {
+  const rootEl = $c('.snake');
   new View(rootEl);
 });

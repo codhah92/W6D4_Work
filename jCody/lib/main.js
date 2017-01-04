@@ -11,7 +11,7 @@ function execute() {
   });
 }
 
-const $l = function (selector) {
+const $c = function (selector) {
   if (typeof selector === "function") {
     if (docReady) {
       selector();
@@ -29,9 +29,9 @@ const $l = function (selector) {
   }
 };
 
-window.$l = $l;
+window.$c = $c;
 
-$l.extend = function(objectA, ...objects) {
+$c.extend = function(objectA, ...objects) {
   objects.forEach((object) => {
     for (let key in object) {
       objectA[key] = object[key];
@@ -40,7 +40,7 @@ $l.extend = function(objectA, ...objects) {
   return objectA;
 };
 
-$l.ajax = function(options = {}) {
+$c.ajax = function(options = {}) {
   const defaults = {
     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
     method: "GET",
@@ -50,7 +50,7 @@ $l.ajax = function(options = {}) {
     error: function() {}
   };
 
-  $l.extend(defaults, options);
+  $c.extend(defaults, options);
   const xhr = new XMLHttpRequest();
 
   xhr.open(defaults.method, defaults.url);
@@ -64,4 +64,4 @@ $l.ajax = function(options = {}) {
   xhr.send(defaults.data);
 };
 
-module.exports = $l;
+module.exports = $c;
