@@ -113,3 +113,6 @@ $l.ajax({
 
 #### `off`
 * Takes an event as an argument and removes all eventListeners for each element in the collection
+
+#### `eq`
+* Takes an index as an argument and selects the element that corresponds to the index in a collection

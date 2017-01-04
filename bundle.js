@@ -49,7 +49,7 @@
 	const $c = __webpack_require__(6);
 	
 	$c( () => {
-	  const rootEl = $c('.snake');
+	  const rootEl = $c('.grid');
 	  new View(rootEl);
 	});
 
@@ -245,7 +245,7 @@
 	  }
 	
 	  step() {
-	    const rootEl = $c('.snake');
+	    const rootEl = $c('.grid');
 	    if (this.board.snake.segments.length > 0) {
 	      this.board.snake.move();
 	      this.render();

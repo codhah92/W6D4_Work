@@ -2,8 +2,14 @@ li {
   float: left;
   width: 20px;
   height: 20px;
-  border: 1px solid #ccc;
-  background: white;
+  border-radius: 30%;
+  /*border: 1px solid #ccc;*/
+}
+
+.grid {
+  background: url('../assets/snake-background.jpg');
+  background: cover;
+  border-radius: 3px;
 }
 
 .apple {

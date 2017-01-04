@@ -57,7 +57,7 @@ class View {
   }
 
   step() {
-    const rootEl = $c('.snake');
+    const rootEl = $c('.grid');
     if (this.board.snake.segments.length > 0) {
       this.board.snake.move();
       this.render();
