@@ -1,6 +1,8 @@
 # jCody
 
-[Snake Demo using jCody][codhah92.github.io/jCody]
+[Snake Demo]
+
+[Snake Demo]:[codhah92.github.io/jCody]
 
 ## Background
 
