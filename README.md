@@ -32,24 +32,24 @@ With jCody, you can perform some basic DOM manipulation functions:
 You can select specific HTML elements or selectors...
 
 ``` javascript
-$l('ul')
+$c('ul')
 // select all ul elements
 
-$l('.hello')
+$c('.hello')
 // select 'hello' class
 ```
 
 You can alter the innerHTML of selected elements...
 
 ``` javascript
-$l('li').html('cool')
+$c('li').html('cool')
 // select li elements and change innerHTML to 'cool'
 ```
 
 You can implement event handlers...
 
 ``` javascript
-$l('.button').on('click', () => {
+$c('.button').on('click', () => {
   console.log('Clicking the button class');
 })
 // clicking the button class will render 'Clicking the button class' to the console
@@ -58,7 +58,7 @@ $l('.button').on('click', () => {
 You can perform an AJAX request...
 
 ``` javascript
-$l.ajax({
+$c.ajax({
   method: "GET",
   url: "http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=bcb83c4b54aee8418983c2aff3073b3b",
   success(data) {
