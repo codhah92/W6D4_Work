@@ -3,6 +3,8 @@
 [Snake Demo][link]
 [link]: http://www.codyjhahn.com/jCody
 
+![main](assets/snake_screenshot.png)
+
 ## Background
 
 jCody is a lightweight JavaScript library that facilitates DOM manipulation. Inspired by jQuery, jCody simplifies HTML document traversing, event handling, and AJAX requests in JavaScript.
