@@ -1,4 +1,5 @@
 const Coord = require('./coord.js');
+const $c = require('./../jCody/lib/main.js');
 
 class Snake {
   constructor(board) {
@@ -25,6 +26,8 @@ class Snake {
 
     if (!this.validMove()) {
       this.segments = [];
+      $c('.game-over').removeClass('hidden');
+      $c('.new-game').removeClass('hidden');
     }
   }
 

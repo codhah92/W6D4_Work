@@ -1,7 +1,7 @@
 li {
   float: left;
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   border-radius: 30%;
   /*border: 1px solid #ccc;*/
 }
@@ -24,4 +24,31 @@ li {
   display: block;
   font-size: 20px;
   margin-top: 10px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.game-over,
+.new-game {
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 200px;
+  margin: 0 auto;
+  width: 100px;
+  background: black;
+  color: white;
+  padding: 10px;
+}
+
+.new-game {
+  top: 275px;
+}
+
+.new-game:hover {
+  cursor: pointer;
+  background: green;
 }

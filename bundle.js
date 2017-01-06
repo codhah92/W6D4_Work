@@ -50,6 +50,11 @@
 	
 	$c( () => {
 	  const rootEl = $c('.grid');
+	  $c('.new-game').on('click', () => {
+	    $c('.new-game').addClass('hidden');
+	    $c('.game-over').addClass('hidden');
+	    new View(rootEl);
+	  });
 	  new View(rootEl);
 	});
 
@@ -59,6 +64,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	const Coord = __webpack_require__(2);
+	const $c = __webpack_require__(6);
 	
 	class Snake {
 	  constructor(board) {
@@ -85,6 +91,8 @@
 	
 	    if (!this.validMove()) {
 	      this.segments = [];
+	      $c('.game-over').removeClass('hidden');
+	      $c('.new-game').removeClass('hidden');
 	    }
 	  }
 	
@@ -245,14 +253,12 @@
 	  }
 	
 	  step() {
-	    const rootEl = $c('.grid');
 	    if (this.board.snake.segments.length > 0) {
 	      this.board.snake.move();
 	      this.render();
 	    } else {
-	      alert("You lose! Try again.");
 	      window.clearInterval(this.intervalId);
-	      new View(rootEl);
+	      return;
 	    }
 	  }
 	}
